@@ -3,10 +3,17 @@ class RecipesController < ApplicationController
 
   # GET /recipes
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.order(created_at: :desc)
 
     render json: @recipes
   end
+
+  # PAGINATION CALLS FOR INDEX
+  # def index_page
+  #   @recipes_per_page = 8
+  #   @offset = params[:id] * @recipes_per_page
+  #   @recipes = Recipe.order(created_at: :desc).limit(@recipes_per_page).offset(@offset)
+  # end
 
   # GET /recipes/1
   def show
