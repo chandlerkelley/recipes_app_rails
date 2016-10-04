@@ -1,6 +1,13 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :update, :destroy]
 
+  def safe_params
+    p 'PARAMS:'
+    p params.inspect
+    p 'END PARAMS'
+    params.require(:recipe).permit!
+  end
+
   # GET /recipes
   def index
     @recipes = Recipe.order(created_at: :desc)
@@ -22,7 +29,7 @@ class RecipesController < ApplicationController
 
   # POST /recipes
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = Recipe.new(safe_params)
 
     if @recipe.save
       render json: @recipe, status: :created, location: @recipe
