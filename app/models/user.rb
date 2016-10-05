@@ -4,4 +4,9 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable,
           :omniauthable
   include DeviseTokenAuth::Concerns::User
+
+  protected
+	def confirmation_required?
+	  false
+	end
 end

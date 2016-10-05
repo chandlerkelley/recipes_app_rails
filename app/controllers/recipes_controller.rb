@@ -10,9 +10,12 @@ class RecipesController < ApplicationController
 
   # GET /recipes
   def index
-    @recipes = Recipe.order(created_at: :desc)
-
-    render json: @recipes
+    if user_signed_in?
+      @recipes = Recipe.order(created_at: :desc)
+      render json: @recipes
+    else
+      puts "Didn't work"
+    end
   end
 
   # PAGINATION CALLS FOR INDEX
