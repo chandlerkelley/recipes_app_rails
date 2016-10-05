@@ -1,6 +1,13 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :update, :destroy]
 
+  def safe_params
+    p 'PARAMS:'
+    p params.inspect
+    p 'END PARAMS'
+    params.require(:note).permit!
+  end
+
   # GET /notes
   def index
     @notes = Note.all
@@ -15,7 +22,7 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = Note.new(note_params)
+    @note = Note.new(safe_params)
 
     if @note.save
       render json: @note, status: :created, location: @note

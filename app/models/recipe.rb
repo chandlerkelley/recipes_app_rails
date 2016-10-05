@@ -5,4 +5,6 @@ class Recipe < ApplicationRecord
   serialize :instructions, Array
   serialize :health_labels, Array
   validates :instructions, presence: true
+
+  # accepts_nested_attributes_for :notes
 end
