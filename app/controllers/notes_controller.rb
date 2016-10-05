@@ -1,16 +1,10 @@
 class NotesController < ApplicationController
+  before_action :set_recipe, only: [:index, :create]
   before_action :set_note, only: [:show, :update, :destroy]
-
-  def safe_params
-    p 'PARAMS:'
-    p params.inspect
-    p 'END PARAMS'
-    params.require(:note).permit!
-  end
 
   # GET /notes
   def index
-    @notes = Note.all
+    @notes = @recipe.notes
 
     render json: @notes
   end
@@ -22,7 +16,9 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = Note.new(safe_params)
+    # @note = Note.new(safe_params)
+
+    @note = @recipe.notes.create(note_params)
 
     if @note.save
       render json: @note, status: :created, location: @note
@@ -47,6 +43,10 @@ class NotesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_recipe
+      @recipe = Recipe.find(params[:recipe_id])
+    end
+
     def set_note
       @note = Note.find(params[:id])
     end
