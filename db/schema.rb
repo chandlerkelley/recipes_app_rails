@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004233934) do
+ActiveRecord::Schema.define(version: 20161006154631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,15 +25,17 @@ ActiveRecord::Schema.define(version: 20161004233934) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.string   "name",          null: false
-    t.string   "photo",         null: false
-    t.string   "source_url",    null: false
-    t.integer  "serving_size",  null: false
-    t.text     "ingredients",   null: false
-    t.text     "instructions",  null: false
-    t.text     "health_labels", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "name",                         null: false
+    t.string   "photo",                        null: false
+    t.string   "source_url",                   null: false
+    t.integer  "serving_size",                 null: false
+    t.text     "ingredients",                  null: false
+    t.text     "instructions",                 null: false
+    t.text     "labels",                       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "favorite",     default: false, null: false
+    t.string   "description"
   end
 
   add_foreign_key "notes", "recipes"
