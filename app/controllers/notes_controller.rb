@@ -2,6 +2,13 @@ class NotesController < ApplicationController
   before_action :set_recipe, only: [:index, :create]
   before_action :set_note, only: [:show, :update, :destroy]
 
+  def safe_params
+    p 'PARAMS:'
+    p params.inspect
+    p 'END PARAMS'
+    params.require(:note).permit!
+  end
+
   # GET /notes
   def index
     @notes = @recipe.notes
@@ -18,7 +25,7 @@ class NotesController < ApplicationController
   def create
     # @note = Note.new(safe_params)
 
-    @note = @recipe.notes.create(note_params)
+    @note = @recipe.notes.create(safe_params)
 
     if @note.save
       render json: @note, status: :created, location: @note
@@ -29,7 +36,7 @@ class NotesController < ApplicationController
 
   # PATCH/PUT /notes/1
   def update
-    if @note.update(note_params)
+    if @note.update(safe_params)
       render json: @note
     else
       render json: @note.errors, status: :unprocessable_entity
