@@ -28,7 +28,7 @@ class NotesController < ApplicationController
     @note = @recipe.notes.create(safe_params)
 
     if @note.save
-      render json: @note, status: :created, location: @note
+      render json: @note, status: :created, location: [ @note.recipe, @note ]
     else
       render json: @note.errors, status: :unprocessable_entity
     end
