@@ -21,4 +21,4 @@ Book of Recipes lets users browse and search through recipes, mark their favorit
 * [Deployed App](http://book-of-recipes.herokuapp.com/)
 * [Trello Board](https://trello.com/b/4U5VZpF8/recipes)
 * [GitHub](https://github.com/PRosset/recipes_app_angular)
-* [Backend GitHub](https://github.com/chandlerkelley/recipes_app_rails)
+* [Frontend GitHub](https://github.com/chandlerkelley/recipes_app_angular)
