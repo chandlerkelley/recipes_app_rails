@@ -15,7 +15,7 @@ Book of Recipes lets users browse and search through recipes, mark their favorit
 * Yummly API
 
 ##Wireframe
-![Wireframe](public/images/wireframe.png)
+![Wireframe](public/wireframe.png)
 
 ##Links
 * [Deployed App](http://book-of-recipes.herokuapp.com/)
